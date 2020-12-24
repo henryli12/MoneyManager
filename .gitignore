@@ -1,0 +1,10 @@
+#Django
+src/db.sqlite3
+**/migrations
+**/__pyacache__
+*.log
+*.pot
+*.pyc
+
+./venv
+.idea
