@@ -7,5 +7,6 @@ src/db.sqlite3
 *.pyc
 
 ./venv
-.idea
 src/.env
+.idea
+.vscode
