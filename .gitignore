@@ -8,3 +8,4 @@ src/db.sqlite3
 
 ./venv
 .idea
+src/.env
