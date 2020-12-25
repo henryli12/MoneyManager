@@ -1,20 +1,55 @@
+var calendar = null;
+var initTransactions = null;
+
 document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
     
-    var calendar = new FullCalendar.Calendar(calendarEl, {
+    calendar = new FullCalendar.Calendar(calendarEl, {
         selectable: true,
         showNonCurrentDates: false,
+        height: "100%",
         headerToolbar: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            left: '',
+            center: 'title',
+            right: ''
         },
         dateClick: function(info) {
         },
         select: function(info) {
-        alert('selected ' + info.startStr + ' to ' + info.endStr);
+            alert('selected ' + info.startStr + ' to ' + info.endStr);
         }
     });
-    
+    // $(".fc-right").append('<select class="select_month form-control"><option value="">Select Month</option><option value="1">Jan</option><option value="2">Feb</option><option value="3">Mrch</option><option value="4">Aprl</option><option value="5">May</option><option value="6">June</option><option value="7">July</option><option value="8">Aug</option><option value="9">Sep</option><option value="10">Oct</option><option value="11">Nov</option><option value="12">Dec</option></select>');
+    // $(".fc-left").append('<select class="select_year form-control"><option value="2019">2019</option><option value="2020">2020</option><option value="2021">2021</option></select>');
+    console.log(initTransactions)
+    for(let x = 0; x < initTransactions.length; x++){
+        transaction = initTransactions[x];
+        console.log(transaction[0])
+        let date = new Date(initTransactions[0][5] + 'T00:00:00');
+        calendar.addEvent({
+            title: transaction[1],
+            start: date,
+            allDay: true
+        })
+        
+    }
     calendar.render();
+    
+    document.getElementById("test").onclick = function() { console.log(calendar.getEvents()) }
+    document.getElementById("add").onclick = function() { 
+        var dateStr = prompt('Enter a date in YYYY-MM-DD format');
+        var date = new Date(dateStr + 'T00:00:00'); // will be in local time
+
+        if (!isNaN(date.valueOf())) { // valid?
+            calendar.addEvent({
+                title: 'dynamic event',
+                start: date,
+                allDay: true
+            });
+            alert('Great. Now, update your database...');
+          } else {
+            alert('Invalid date.');
+          }
+     }
+
     });
