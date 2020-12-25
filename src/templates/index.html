@@ -22,7 +22,7 @@
     <body>
         <div class="container-fluid" id="main_container" style="height: 100%">
             <div class="row" style="height: 100%;">
-                <div class="col-3" id="sidebar" style="border-style: solid; border-radius: 5px; overflow-y:auto">
+                <div class="col-3 bg-light border-right" id="sidebar" style="overflow-y: overlay;">
                     <br>
                     <div class="row" style="margin-top: 10px;">
                         <div style="float: right;">
@@ -50,9 +50,9 @@
                             
                     </div>
                     <hr>
-
+                    {% block content %}
                     {% for transaction in transactions %}
-                    <div class="row card" style="margin: 10px;">
+                    <div class="row card bg-light mb-3" style="margin: 10px;">
                         <div class="card-header">
                             <h5>{{transaction.title}}</h5>
                         </div>
@@ -61,14 +61,9 @@
                         </div>
                     </div>
                     {% endfor %}
-
-                </div>
-                <div class="col-9">
-                    {% block content %}
-                    <div id='calendar'></div>
                     {% endblock content%}
-
                 </div>
+                <div class="col" id="calendar"></div>
             </div>
         </div>
 
