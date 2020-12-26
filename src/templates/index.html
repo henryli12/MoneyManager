@@ -24,7 +24,7 @@
             <div class="row" style="height: 100%;">
                 <div class="col-3 bg-light border-right" id="sidebar" style="overflow-y: overlay;">
                     <br>
-                    <div class="row" style="margin-top: 10px;">
+                    <div class="row" style="margin-top: 10px;" id="summary_container">
                         <div style="float: right;">
                             <select id="month" name="month" style="font-size: 24px;">
                                 <option value="0" disabled="disabled" selected>Month</option>
@@ -50,26 +50,26 @@
                             
                     </div>
                     <hr>
-                    {% block content %}
-                    {% for transaction in transactions %}
-                    <div class="row card bg-light mb-3" style="margin: 10px;">
+                    <div class="row" id="transactions_container"></div>
+                    <!-- <div class="row card bg-light mb-3" style="margin: 10px;">
                         <div class="card-header">
-                            <h5>{{transaction.title}}</h5>
+                            <h5>{{transaction}}</h5>
                         </div>
                         <div class="card-body">
                             <p>{{transaction.date}} ${{transaction.amount}}</p>
                         </div>
-                    </div>
-                    {% endfor %}
-                    {% endblock content%}
+                    </div> -->
                 </div>
                 <div class="col" id="calendar"></div>
             </div>
         </div>
 
+        <script type="text/javascript" src="{% static 'js/globals.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/sidebar.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/calendar.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
         <script>
-            initTransactions = {{transactions_json|safe}};
+            initTransactions = {{transactions|safe}};
         </script>
     </body>
 </html>

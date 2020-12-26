@@ -1,6 +1,3 @@
-var calendar = null;
-var initTransactions = null;
-
 document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
     
@@ -22,12 +19,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // $(".fc-right").append('<select class="select_month form-control"><option value="">Select Month</option><option value="1">Jan</option><option value="2">Feb</option><option value="3">Mrch</option><option value="4">Aprl</option><option value="5">May</option><option value="6">June</option><option value="7">July</option><option value="8">Aug</option><option value="9">Sep</option><option value="10">Oct</option><option value="11">Nov</option><option value="12">Dec</option></select>');
     // $(".fc-left").append('<select class="select_year form-control"><option value="2019">2019</option><option value="2020">2020</option><option value="2021">2021</option></select>');
     console.log(initTransactions)
-    for(let x = 0; x < initTransactions.length; x++){
-        transaction = initTransactions[x];
-        console.log(transaction[0])
-        let date = new Date(initTransactions[0][5] + 'T00:00:00');
+    for(let key in initTransactions){
+        let transaction = initTransactions[key];
+        console.log(transaction)
+        let date = new Date(transaction["date"] + 'T00:00:00');
         calendar.addEvent({
-            title: transaction[1],
+            title: transaction["title"],
             start: date,
             allDay: true
         })

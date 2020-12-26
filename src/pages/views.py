@@ -6,17 +6,25 @@ import json
 # Create your views here.
 def home_view(request, *args, **kwargs):
     transactions = Transaction.objects.all()
-    transactions_list = transactions.values_list('id', 'title', 'description', 'amount', 'type', 'date')
-    transactions_json = json.dumps(list(transactions_list), cls=DjangoJSONEncoder)
-    print(transactions_json)
+    transactions_list = to_dict(transactions)
+    transactions_json = json.dumps(transactions_list)
     context = {
-        'transactions': transactions,
-        'transactions_json': transactions_json
+        'transactions': transactions_json
     }
     return render(request, "index.html", context)
 
-def edit_view(request, *args, **kwargs):
-    return render(request, "edit.html", {})
+def get_transactions_by_month(month):
+    return
 
-def create_view(request, *args, **kwargs):
-    return render(request, "create.html", {})
+def to_dict(queryset):
+    l = dict()
+    for object in queryset:
+        temp = dict()
+        temp["title"] = object.title
+        temp["description"] = object.description
+        temp["amount"] = str(object.amount)
+        temp["type"] = object.type
+        temp["date"] = str(object.date)
+        l[str(object.id)] = temp
+    print(l)
+    return l

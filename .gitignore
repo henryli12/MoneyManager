@@ -10,3 +10,5 @@ src/db.sqlite3
 src/.env
 .idea
 .vscode
+
+test.py
