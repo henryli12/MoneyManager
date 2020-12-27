@@ -3,8 +3,6 @@
 <html>
     <head>
         <title>Money Manager</title>
-
-        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
         
         <!-- Bootstrap -->
         <!-- CSS only -->
@@ -18,15 +16,17 @@
         <!-- Fullcalendar -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.0/main.min.css" integrity="sha256-uq9PNlMzB+1h01Ij9cx7zeE2OR2pLAfRw3uUUOOPKdA=" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.0/main.min.js" integrity="sha256-YS9kklqEaLYBFpFsHZhoRQna5D2+RSAi/3V4+fXi9qQ=" crossorigin="anonymous"></script>
+    
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     </head>
     <body>
         <div class="container-fluid" id="main_container" style="height: 100%">
             <div class="row" style="height: 100%;">
-                <div class="col-3 bg-light border-right" id="sidebar" style="overflow-y: overlay;">
+                <div class="col-3 bg-light border-right" id="sidebar" style="height: 100%;">
                     <br>
-                    <div class="row" style="margin-top: 10px;" id="summary_container">
-                        <div style="float: right;">
-                            <select id="month" name="month" style="font-size: 24px;">
+                    <div class="row">
+                        <div class="col-6" style="float: right;">
+                            <select class="form-control" id="month_select" name="month" style="font-size: 20px;">
                                 <option value="0" disabled="disabled" selected>Month</option>
                                 <option value="1">January</option>
                                 <option value="2">February</option>
@@ -42,23 +42,35 @@
                                 <option value="12">December</option>
                             </select>
                         </div>
-                        <button id="test">Click</button>
-                        <button id="add">Add</button>
-                        <select id="year" name="year" style="font-size: 24px;">
-
-                        </select>
-                            
+                        <div class="col-6" style="float: left;">
+                            <select class="form-control" id="year_select" name="year" style="font-size: 20px;">
+                                <option value="0" disabled="disabled" selected>Year</option>
+                                <option value="1">2019</option>
+                                <option value="2">2020</option>
+                                <option value="3">2021</option>
+                            </select>
+                        </div>
                     </div>
                     <hr>
-                    <div class="row" id="transactions_container"></div>
-                    <!-- <div class="row card bg-light mb-3" style="margin: 10px;">
-                        <div class="card-header">
-                            <h5>{{transaction}}</h5>
+                    <div class="row" style="margin-top: 10px;" id="summary_container">
+                        <div class="col-4" style="text-align: center;">
+                            <h4>Expense</h4>
+                            <label style="margin-bottom: 0%;" id="expnese">10000000</label>
                         </div>
-                        <div class="card-body">
-                            <p>{{transaction.date}} ${{transaction.amount}}</p>
+                        <div class="col-4" style="text-align: center;">
+                            <h4>Income</h4>
+                            <label style="margin-bottom: 0%;" id="income">10000000</label>
                         </div>
-                    </div> -->
+                        <div class="col-4" style="text-align: center;">
+                            <h4>Net</h4>
+                            <label style="margin-bottom: 0%;" id="net">100000000</label>
+                        </div>
+                    </div>
+                    <hr>
+                    <!-- <button id="test" class="btn btn-primary" style="width: 100%;">Click</button> -->
+                    <button id="add" class="btn btn-primary" style="width:100%;">Add Transactions</button>
+                    <hr>
+                    <div id="transactions_container" style="overflow-y: auto; height:60%";></div>
                 </div>
                 <div class="col" id="calendar"></div>
             </div>
