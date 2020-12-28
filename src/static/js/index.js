@@ -5,9 +5,29 @@ $( document ).ready(function() {
 
     $('#add_date').attr("value", formatDate(new Date(), "date"));
     $('#month_display').attr("value", formatDate(new Date(), "month"));
-    document.getElementById("add").onclick = function() { 
+    $('#month_display').change(function() {
+        console.log(this.value);
+        if(this.value){
+            calendar.gotoDate(this.value);
+        }
+    });
+    $('#add').click(function() { 
         $('#add_modal').modal();
-   }
+   });
+   $('#prev_month').click(function() {
+        let date = new Date($('#month_display').val() + "-01")
+        date.setMonth(date.getMonth());
+        console.log(date)
+        $('#month_display').attr("value", formatDate(date, "month"));
+        calendar.gotoDate(date);
+    });
+    $('#next_month').click(function() {
+        let date = new Date($('#month_display').val() + "-01")
+        date.setMonth(date.getMonth() + 2);
+        console.log(date)
+        $('#month_display').attr("value", formatDate(date, "month"));
+        calendar.gotoDate(date);
+    });
 
 });
 
@@ -16,13 +36,15 @@ function formatDate(d, type) {
     let day = '' + d.getDate();
     let year = d.getFullYear();
 
-    if (month.length < 2) 
+    if (month.length < 2){
         month = '0' + month;
+    }
     if (type === "month"){
         return [year, month].join('-');
     }
-    if (day.length < 2) 
+    if (day.length < 2){
         day = '0' + day;
+    }
 
     return [year, month, day].join('-');
 }
