@@ -11,7 +11,7 @@ $( document ).ready(function() {
             calendar.gotoDate(this.value);
         }
     });
-    $('#add').click(function() { 
+    $('#add').click(function() {
         $('#add_modal').modal();
    });
    $('#prev_month').click(function() {
@@ -30,6 +30,21 @@ $( document ).ready(function() {
         calendar.gotoDate(date);
         this.blur();
     });
+
+    $('#modal_add').click(function() {
+        let transaction = {
+            'title': $('#add_title').val(),
+            'description': $('#add_description').val(),
+            'amount': $('#add_amount').val(),
+            'type': $('#add_type').find(":selected").text().split("")[0],
+            'date': $('#add_date').val(),
+
+        }
+        console.log(transaction);
+        $('#add_modal').modal('hide');
+        addCalendarEvents({1:transaction});
+        addTransactionCard({1:transaction});
+    })
 
 });
 

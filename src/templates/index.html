@@ -85,8 +85,8 @@
                             <div class="form-group row">
                                 <label for="add_type" class="col-3 col-form-label">Type</label>
                                 <div class="col">
-                                    <select class="form-control">
-                                        <option value="expense">Expense</option>
+                                    <select class="form-control" id="add_type">
+                                        <option value="expense" selected="true">Expense</option>
                                         <option value="income">Income</option>
                                     </select>
                                 </div>
@@ -100,7 +100,7 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Add</button>
+                        <button type="button" class="btn btn-primary" id="modal_add">Add</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </div>

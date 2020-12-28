@@ -27,13 +27,3 @@ function addCalendarEvents(transactions){
         })
     }
 }
-
-function addCalendarEvent(transaction){
-    transaction = transactions[key];
-    let date = new Date(transaction["date"] + 'T00:00:00');
-    calendar.addEvent({
-        title: transaction["title"],
-        start: date,
-        allDay: true
-    })
-}
