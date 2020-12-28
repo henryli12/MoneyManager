@@ -5,7 +5,7 @@ function addTransactionCard(transactions){
         let sign = (transaction["type"] === "I") ? "+" : "-";
         let card = document.createElement("div");
         card.id = key;
-        card.classList.add("row", "card", "bg-light", "mb-3");
+        card.classList.add("row", "card", "bg-light");
         
         let cardHeader = document.createElement("div");
         cardHeader.classList.add("card-header");

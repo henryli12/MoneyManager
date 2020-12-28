@@ -6,14 +6,20 @@ calendar = new FullCalendar.Calendar(calendarEl, {
     height: "100%",
     expandRows: true,
     headerToolbar: {
-        left: 'prev',
+        left: '',
         center: 'title',
-        right: 'next'
+        right: ''
     },
     dateClick: function(info) {
     },
     select: function(info) {
-    }
+    },
+    eventClick: function(info) {
+        alert('Event: ' + info.event.title);
+
+        // change the border color just for fun
+        // info.el.style.borderColor = 'red';
+      }
 });
 
 function addCalendarEvents(transactions){

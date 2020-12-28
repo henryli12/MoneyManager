@@ -4,11 +4,15 @@ html,body {
 p{
     margin: 0px;
 }
+hr{
+    margin-bottom: .75rem;
+    margin-top: .75rem;
+}
 .datepicker {
     z-index: 1600 !important; /* has to be larger than 1050 */
 }
 .card{
-    margin: 5px;
+    margin: 10px;
 }
 .card:hover{
     border-color: blue;
