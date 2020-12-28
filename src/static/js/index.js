@@ -18,7 +18,7 @@ $( document ).ready(function() {
         let date = new Date($('#month_display').val() + "-01")
         date.setMonth(date.getMonth());
         console.log(date)
-        $('#month_display').attr("value", formatDate(date, "month"));
+        $('#month_display').val(formatDate(date, "month"));
         calendar.gotoDate(date);
         this.blur();
     });
@@ -26,7 +26,7 @@ $( document ).ready(function() {
         let date = new Date($('#month_display').val() + "-01")
         date.setMonth(date.getMonth() + 2);
         console.log(date)
-        $('#month_display').attr("value", formatDate(date, "month"));
+        $('#month_display').val(formatDate(date, "month"));
         calendar.gotoDate(date);
         this.blur();
     });
