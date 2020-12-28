@@ -3,8 +3,8 @@ $( document ).ready(function() {
     addTransactionCard(initTransactions);
     calendar.render();
 
-    $('#add_date').attr("value", formatDate(new Date(), "date"));
-    $('#month_display').attr("value", formatDate(new Date(), "month"));
+    $('#add_date').val(formatDate(new Date(), "date"));
+    $('#month_display').val(formatDate(new Date(), "month"));
     $('#month_display').change(function() {
         console.log(this.value);
         if(this.value){
@@ -33,7 +33,7 @@ $( document ).ready(function() {
 
     $('#modal_add').click(function() {
         let transaction = {
-            'title': $('#add_title').val(),
+            'title': $('#add_title').val() !== "" ? $('#add_title').val() : "New Transaction",
             'description': $('#add_description').val(),
             'amount': $('#add_amount').val(),
             'type': $('#add_type').find(":selected").text().split("")[0],
@@ -44,6 +44,11 @@ $( document ).ready(function() {
         $('#add_modal').modal('hide');
         addCalendarEvents({1:transaction});
         addTransactionCard({1:transaction});
+        $('#add_title').val("");
+        $('#add_description').val("");
+        $('#add_amount').val(0.01);
+        $('#add_type').val('expense');
+        $('#add_date').val(formatDate(new Date(), "date"))
     })
 
 });
