@@ -16,9 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from pages.views import home_view
+from pages.views import home_view, add_transaction
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home_view)
+    path('', home_view),
+    path('add_transaction/', add_transaction)
 ]

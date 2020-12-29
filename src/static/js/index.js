@@ -30,8 +30,12 @@ $( document ).ready(function() {
         calendar.gotoDate(date);
         this.blur();
     });
-
-    $('#modal_add').click(function() {
+    $('#add_modal').on('shown.bs.modal', function (e) {
+        console.log('modal shown');
+        $('#add_title').focus();
+    })
+    $('#add_form').submit(function(e) {
+        e.preventDefault();
         let transaction = {
             'title': $('#add_title').val() !== "" ? $('#add_title').val() : "New Transaction",
             'description': $('#add_description').val(),
@@ -41,14 +45,18 @@ $( document ).ready(function() {
 
         }
         console.log(transaction);
+        let tempID = Date.now();
+        let tempObject = {};
+        tempObject[tempID] = transaction;
+        addCalendarEvents(tempObject);
+        addTransactionCard(tempObject);
+        addTransactionDB(tempObject);
         $('#add_modal').modal('hide');
-        addCalendarEvents({1:transaction});
-        addTransactionCard({1:transaction});
         $('#add_title').val("");
         $('#add_description').val("");
         $('#add_amount').val(0.01);
         $('#add_type').val('expense');
-        $('#add_date').val(formatDate(new Date(), "date"))
+        $('#add_date').val(formatDate(new Date(), "date"));
     })
 
 });
