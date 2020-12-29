@@ -1,7 +1,7 @@
 function addTransactionCard(transactions){
     let cardContainer = document.getElementById("transactions_container");
     for(let key in transactions){
-        let transaction = transactions[key]
+        let transaction = transactions[key];
         let sign = (transaction["type"] === "I") ? "+" : "-";
         let card = document.createElement("div");
         card.id = key;

@@ -21,6 +21,8 @@ function getTransactionsDB(date){
             success: function(response){
                 console.log('success');
                 console.log(response)
+                let transactions = JSON.parse(response);
+                addTransactionCard(transactions)
             }
         }
     );

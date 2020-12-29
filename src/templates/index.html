@@ -45,9 +45,7 @@
                         </div>
                     </div>
                     <hr>
-                    <!-- <button id="test" class="btn btn-primary" style="width: 100%;">Click</button> -->
                     <button id="add" class="btn btn-primary" style="width:100%;">Add Transactions</button>
-                    <button id="get" class="btn btn-primary" style="width:100%;">Get Transactions</button>
                     <hr>
                     <div id="transactions_container" style="overflow-y: auto; height:60%";></div>
                 </div>
@@ -64,7 +62,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form id="add_form">{% csrf_token %}
+                        <form id="add_form">
                             <div class="form-group row">
                                 <label for="add_title" class="col-3 col-form-label">Title</label>
                                 <div class="col">

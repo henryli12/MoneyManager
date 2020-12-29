@@ -1,6 +1,5 @@
 $( document ).ready(function() {
     addCalendarEvents(initTransactions);
-    addTransactionCard(initTransactions);
     calendar.render();
 
     $('#add_date').val(formatDate(new Date(), "date"));
@@ -19,18 +18,22 @@ $( document ).ready(function() {
     });
    $('#prev_month').click(function() {
         let date = new Date($('#month_display').val() + "-01")
-        date.setMonth(date.getMonth());
+        date.setMonth(date.getMonth(), 1);
         console.log(date)
         $('#month_display').val(formatDate(date, "month"));
         calendar.gotoDate(date);
+        $("#transactions_container").empty()
+        getTransactionsDB($('#month_display').val());
         this.blur();
     });
     $('#next_month').click(function() {
         let date = new Date($('#month_display').val() + "-01")
-        date.setMonth(date.getMonth() + 2);
+        date.setMonth(date.getMonth() + 2, 1);
         console.log(date)
         $('#month_display').val(formatDate(date, "month"));
         calendar.gotoDate(date);
+        $("#transactions_container").empty()
+        getTransactionsDB($('#month_display').val());
         this.blur();
     });
     $('#add_modal').on('shown.bs.modal', function (e) {
@@ -59,7 +62,7 @@ $( document ).ready(function() {
         $('#add_type').val('expense');
         $('#add_date').val(formatDate(new Date(), "date"));
     })
-
+    getTransactionsDB($('#month_display').val());
 });
 
 function formatDate(d, type) {
