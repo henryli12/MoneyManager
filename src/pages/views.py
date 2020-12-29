@@ -20,11 +20,10 @@ def add_transaction(request):
     print('added')
     data = list(request.POST.keys())[0]
     data = json.loads(data)
-    id = list(data.keys())[0]
-    transaction = Transaction(id=id, title=data[id]['title'], description=data[id]['description'],
-                              amount=data[id]['amount'], type=data[id]['type'], date=data[id]['date'])
+    print(data)
+    transaction = Transaction(id=data['id'], title=data['title'], description=data['description'],
+                              amount=data['amount'], type=data['type'], date=data['date'])
     transaction.save()
-    print(id)
     return HttpResponse(status=204)
 
 def get_transactions_by_month(month):

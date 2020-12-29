@@ -36,6 +36,7 @@ $( document ).ready(function() {
     })
     $('#add_form').submit(function(e) {
         e.preventDefault();
+        let tempID = Date.now();
         let transaction = {
             'title': $('#add_title').val() !== "" ? $('#add_title').val() : "New Transaction",
             'description': $('#add_description').val(),
@@ -44,13 +45,10 @@ $( document ).ready(function() {
             'date': $('#add_date').val(),
 
         }
-        console.log(transaction);
-        let tempID = Date.now();
-        let tempObject = {};
-        tempObject[tempID] = transaction;
-        addCalendarEvents(tempObject);
-        addTransactionCard(tempObject);
-        addTransactionDB(tempObject);
+        transaction["id"] = tempID;
+        addCalendarEvents({1:transaction});
+        addTransactionCard({1:transaction});
+        addTransactionDB(transaction);
         $('#add_modal').modal('hide');
         $('#add_title').val("");
         $('#add_description').val("");

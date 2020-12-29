@@ -30,7 +30,7 @@ function addCalendarEvents(transactions){
             title: transaction["title"],
             start: date,
             allDay: true,
-            id: key
+            id: transaction["id"]
         })
     }
 }
