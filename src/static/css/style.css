@@ -17,16 +17,16 @@ hr{
 .card:hover{
     border-color: blue;
 }
-.card-header{
+.card-header, .card-body{
     padding: .5rem 1rem;
-}
-.card-body{
-    padding: .5rem 1rem;
-
 }
 .card_title{
     float: left;
 }
 .card_amount{
     float: right;
+}
+#summary_container label{
+    margin-bottom: 0%;
+    font-size: 16px;
 }

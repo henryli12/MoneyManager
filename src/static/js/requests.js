@@ -20,9 +20,11 @@ function getTransactionsDB(date){
             url: `./get/${date}`,
             success: function(response){
                 console.log('success');
-                console.log(response)
-                let transactions = JSON.parse(response);
-                addTransactionCard(transactions)
+                console.log(response);
+                let data = JSON.parse(response);
+                let transactions = data['data'] ;
+                addTransactionCard(transactions);
+                setMonthlyStatus(data['expense'], data['income']);
             }
         }
     );

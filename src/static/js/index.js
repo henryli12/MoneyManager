@@ -17,23 +17,15 @@ $( document ).ready(function() {
         getTransactionsDB($('#month_display').val());
     });
    $('#prev_month').click(function() {
-        let date = new Date($('#month_display').val() + "-01")
+        let date = new Date($('#month_display').val() + "-01");
         date.setMonth(date.getMonth(), 1);
-        console.log(date)
-        $('#month_display').val(formatDate(date, "month"));
-        calendar.gotoDate(date);
-        $("#transactions_container").empty()
-        getTransactionsDB($('#month_display').val());
+        changeMonth(date);
         this.blur();
     });
     $('#next_month').click(function() {
-        let date = new Date($('#month_display').val() + "-01")
+        let date = new Date($('#month_display').val() + "-01");
         date.setMonth(date.getMonth() + 2, 1);
-        console.log(date)
-        $('#month_display').val(formatDate(date, "month"));
-        calendar.gotoDate(date);
-        $("#transactions_container").empty()
-        getTransactionsDB($('#month_display').val());
+        changeMonth(date);
         this.blur();
     });
     $('#add_modal').on('shown.bs.modal', function (e) {
@@ -53,8 +45,11 @@ $( document ).ready(function() {
         }
         transaction["id"] = tempID;
         addCalendarEvents({1:transaction});
-        addTransactionCard({1:transaction});
         addTransactionDB(transaction);
+        if(transaction['date'].includes($('#month_display').val())) {
+            addTransactionCard({1:transaction});
+            updateMonthlyStatus(transaction['type'], transaction['amount'])
+        }
         $('#add_modal').modal('hide');
         $('#add_title').val("");
         $('#add_description').val("");
@@ -62,8 +57,23 @@ $( document ).ready(function() {
         $('#add_type').val('expense');
         $('#add_date').val(formatDate(new Date(), "date"));
     })
+    
+    // Get transactions for current month to display 
     getTransactionsDB($('#month_display').val());
 });
+
+function changeMonth(date){
+    console.log(date);
+    let current = new Date()
+    if (date.getMonth() === current.getMonth()){
+        date = current
+    }
+    $('#month_display').val(formatDate(date, "month"));
+    $('#add_date').val(formatDate(date, "date"));
+    calendar.gotoDate(date);
+    $("#transactions_container").empty()
+    getTransactionsDB($('#month_display').val());
+}
 
 function formatDate(d, type) {
     let month = '' + (d.getMonth() + 1);

@@ -29,9 +29,21 @@ def add_transaction(request):
 def get_transactions_by_month(request, month):
     y, m = month.split("-")
     print(y, m)
+    expense, income = 0, 0
     transactions = Transaction.objects.filter(date__year=y, date__month=m)
+    for t in transactions:
+        if t.type == "I":
+            income += t.amount
+        else:
+            expense += t.amount
+    print(expense, income)
     transactions_list = to_dict(transactions)
-    transactions_json = json.dumps(transactions_list)
+    data = {
+        'expense': str(expense),
+        'income': str(income),
+        'data': transactions_list
+    }
+    transactions_json = json.dumps(data)
     return HttpResponse(transactions_json)
 
 def to_dict(queryset):

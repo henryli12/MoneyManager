@@ -40,3 +40,26 @@ function addTransactionCard(transactions){
         cardContainer.appendChild(card);
     }
 }
+
+function setMonthlyStatus(expense, income){
+    $('#expense').text(parseFloat(expense).toFixed(2));
+    $('#income').text(parseFloat(income).toFixed(2));
+    $('#net').text(parseFloat(income-expense).toFixed(2));
+}
+
+function updateMonthlyStatus(type, amount){
+    amount =  parseFloat(amount);
+    if (type === "I"){
+        let originalIncome = parseFloat($('#income').text());
+        let originalNet = parseFloat($('#net').text());
+        $('#income').text(parseFloat(originalIncome + amount).toFixed(2));
+        $('#net').text(parseFloat(originalNet + amount).toFixed(2));
+        console.log(originalIncome + amount)
+    } else if (type === "E"){
+        let originalExpense = parseFloat($('#expense').text());
+        let originalNet = parseFloat($('#net').text());
+        $('#expense').text(parseFloat(originalExpense + amount).toFixed(2));
+        $('#net').text(parseFloat(originalNet - amount).toFixed(2));
+        console.log('here E')
+    }
+}
