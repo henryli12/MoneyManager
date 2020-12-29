@@ -26,8 +26,13 @@ def add_transaction(request):
     transaction.save()
     return HttpResponse(status=204)
 
-def get_transactions_by_month(month):
-    return
+def get_transactions_by_month(request, month):
+    y, m = month.split("-")
+    print(y, m)
+    transactions = Transaction.objects.filter(date__year=y, date__month=m)
+    transactions_list = to_dict(transactions)
+    transactions_json = json.dumps(transactions_list)
+    return HttpResponse(transactions_json)
 
 def to_dict(queryset):
     l = dict()

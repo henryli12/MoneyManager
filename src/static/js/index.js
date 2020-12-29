@@ -14,6 +14,9 @@ $( document ).ready(function() {
     $('#add').click(function() {
         $('#add_modal').modal();
    });
+   $('#get').click(function() {
+        getTransactionsDB($('#month_display').val());
+    });
    $('#prev_month').click(function() {
         let date = new Date($('#month_display').val() + "-01")
         date.setMonth(date.getMonth());

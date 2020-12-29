@@ -16,10 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from pages.views import home_view, add_transaction
+from pages.views import home_view, add_transaction, get_transactions_by_month
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view),
-    path('add_transaction/', add_transaction)
+    path('add_transaction/', add_transaction),
+    path('get/<str:month>/', get_transactions_by_month)
 ]
