@@ -54,12 +54,10 @@ function updateMonthlyStatus(type, amount){
         let originalNet = parseFloat($('#net').text());
         $('#income').text(parseFloat(originalIncome + amount).toFixed(2));
         $('#net').text(parseFloat(originalNet + amount).toFixed(2));
-        console.log(originalIncome + amount)
     } else if (type === "E"){
         let originalExpense = parseFloat($('#expense').text());
         let originalNet = parseFloat($('#net').text());
         $('#expense').text(parseFloat(originalExpense + amount).toFixed(2));
         $('#net').text(parseFloat(originalNet - amount).toFixed(2));
-        console.log('here E')
     }
 }

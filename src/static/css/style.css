@@ -26,6 +26,10 @@ hr{
 .card_amount{
     float: right;
 }
+.card-header button{
+    float: right;
+    height: 70%;
+}
 #summary_container label{
     margin-bottom: 0%;
     font-size: 16px;

@@ -15,8 +15,8 @@ calendar = new FullCalendar.Calendar(calendarEl, {
     select: function(info) {
     },
     eventClick: function(info) {
-        alert('Event: ' + info.event.id);
-
+        // alert('Event: ' + info.event.id);
+        editTransaction(info.event.id);
         // change the border color just for fun
         // info.el.style.borderColor = 'red';
       }
@@ -30,7 +30,13 @@ function addCalendarEvents(transactions){
             title: transaction["title"],
             start: date,
             allDay: true,
-            id: transaction["id"]
+            id: transaction["id"],
+            extendedProps: {
+                description: transaction["description"],
+                amount: transaction["amount"],
+                type: transaction["type"],
+                date: transaction["date"]
+            }
         })
     }
 }

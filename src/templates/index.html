@@ -105,7 +105,59 @@
                 </div>
             </div>
         </div>
-
+        <div class="modal" tabindex="-1" role="dialog" id="edit_modal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Transaction</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="edit_form">
+                            <div class="form-group row">
+                                <label for="edit_title" class="col-3 col-form-label">Title</label>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="edit_title" placeholder="New Transaction" maxlength="40"/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="edit_description" class="col-3 col-form-label">Description</label>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="edit_description" placeholder="None" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="edit_amount" class="col-3 col-form-label">Amount</label>
+                                <div class="col">
+                                    <input type="number" class="form-control" id="edit_amount" step='0.01' value='0.01' placeholder='Amount' min="0.01" max="9999.99" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="edit_type" class="col-3 col-form-label">Type</label>
+                                <div class="col">
+                                    <select class="form-control" id="edit_type">
+                                        <option value="expense" selected="true">Expense</option>
+                                        <option value="income">Income</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="edit_amount" class="col-3 col-form-label">Date</label>
+                                <div class="col">
+                                    <input class="form-control" type="date" placeholder="Pick a date" id="edit_date" min="2000-01-01" max="2100-12-31"/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" id="modal_edit" form="edit_form">Save</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <script type="text/javascript" src="{% static 'js/requests.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/globals.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/sidebar.js' %}"></script>

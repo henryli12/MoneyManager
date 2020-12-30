@@ -92,3 +92,16 @@ function formatDate(d, type) {
 
     return [year, month, day].join('-');
 }
+
+function editTransaction(id){
+    let event = calendar.getEventById(id);
+    let transaction = event["extendedProps"];
+    console.log(transaction);
+    let type = transaction["type"] === "E" ? "expense" : "income";
+    $('#edit_title').val(event["title"]);
+    $('#edit_description').val(transaction["description"]);
+    $('#edit_amount').val(transaction["amount"]);
+    $('#edit_type').val(type);
+    $('#edit_date').val(transaction["date"]);
+    $('#edit_modal').modal('show');
+}
