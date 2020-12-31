@@ -59,7 +59,6 @@ $( document ).ready(function() {
     $('#edit_form').submit(function(e) {
         e.preventDefault();
         let id = $('#edit_id').val();
-        console.log(id);
         let transaction = {
             'title': $('#edit_title').val() !== "" ? $('#edit_title').val() : "New Transaction",
             'description': $('#edit_description').val(),
@@ -67,7 +66,12 @@ $( document ).ready(function() {
             'type': $('#edit_type').find(":selected").text().split("")[0],
             'date': $('#edit_date').val(),
         }
-        editTransactionDB(transaction, id);
+        editCalendarEvent(transaction, id);
+        // editTransactionDB(transaction, id);
+        // if(transaction['date'].includes($('#month_display').val())) {
+            // editTransactionCard(transaction);
+            // updateMonthlyStatus(transaction['type'], transaction['amount'])
+        // }
         $('#edit_modal').modal('hide');
     })
     
