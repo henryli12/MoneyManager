@@ -6,7 +6,6 @@ from django.views.decorators.http import require_http_methods
 from django.http import HttpResponse
 
 # Create your views here.
-@require_http_methods(["GET", "POST"])
 def home_view(request, *args, **kwargs):
     transactions = Transaction.objects.all()
     transactions_list = to_dict(transactions)
@@ -45,6 +44,21 @@ def get_transactions_by_month(request, month):
     }
     transactions_json = json.dumps(data)
     return HttpResponse(transactions_json)
+
+def edit_transaction(request, id):
+    data = list(request.POST.keys())[0]
+    data = json.loads(data)
+    transaction = Transaction.objects.get(id=id)
+    transaction.title = data['title']
+    transaction.description = data['description']
+    transaction.amount = data['amount']
+    transaction.type = data['type']
+    transaction.date = data['date']
+    transaction.save()
+    print(transaction.title)
+    # print(request.POST)
+    # print(id)
+    return HttpResponse(status=204)
 
 def to_dict(queryset):
     l = dict()

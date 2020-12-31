@@ -12,12 +12,13 @@ function addTransactionDB(transaction){
         }
     );
 }
+
 function getTransactionsDB(date){
     $.ajax(
         {
             headers: { "X-CSRFToken": csrfToken },
             type: 'GET',
-            url: `./get/${date}`,
+            url: `./get/${date}/`,
             success: function(response){
                 console.log('success');
                 console.log(response);
@@ -28,4 +29,19 @@ function getTransactionsDB(date){
             }
         }
     );
+}
+
+function editTransactionDB(transaction, id){
+    $.ajax(
+        {
+            headers: { "X-CSRFToken": csrfToken },
+            type: 'POST',
+            url: `./edit/${id}/`,
+            data: JSON.stringify(transaction),
+            dataType: 'json',
+            success: function(){
+                console.log('success');
+            }
+        }
+    )
 }

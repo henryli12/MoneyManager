@@ -12,11 +12,11 @@ $( document ).ready(function() {
     });
     $('#add').click(function() {
         $('#add_modal').modal();
-   });
-   $('#get').click(function() {
+    });
+    $('#get').click(function() {
         getTransactionsDB($('#month_display').val());
     });
-   $('#prev_month').click(function() {
+    $('#prev_month').click(function() {
         let date = new Date($('#month_display').val() + "-01");
         date.setMonth(date.getMonth(), 1);
         changeMonth(date);
@@ -41,7 +41,6 @@ $( document ).ready(function() {
             'amount': $('#add_amount').val(),
             'type': $('#add_type').find(":selected").text().split("")[0],
             'date': $('#add_date').val(),
-
         }
         transaction["id"] = tempID;
         addCalendarEvents({1:transaction});
@@ -56,6 +55,20 @@ $( document ).ready(function() {
         $('#add_amount').val(0.01);
         $('#add_type').val('expense');
         $('#add_date').val(formatDate(new Date(), "date"));
+    })
+    $('#edit_form').submit(function(e) {
+        e.preventDefault();
+        let id = $('#edit_id').val();
+        console.log(id);
+        let transaction = {
+            'title': $('#edit_title').val() !== "" ? $('#edit_title').val() : "New Transaction",
+            'description': $('#edit_description').val(),
+            'amount': $('#edit_amount').val(),
+            'type': $('#edit_type').find(":selected").text().split("")[0],
+            'date': $('#edit_date').val(),
+        }
+        editTransactionDB(transaction, id);
+        $('#edit_modal').modal('hide');
     })
     
     // Get transactions for current month to display 
@@ -98,6 +111,7 @@ function editTransaction(id){
     let transaction = event["extendedProps"];
     console.log(transaction);
     let type = transaction["type"] === "E" ? "expense" : "income";
+    $('#edit_id').val(id);
     $('#edit_title').val(event["title"]);
     $('#edit_description').val(transaction["description"]);
     $('#edit_amount').val(transaction["amount"]);
