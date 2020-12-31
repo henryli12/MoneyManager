@@ -88,30 +88,3 @@ function removeMonthlyStatus(type, amount){
         $('#net').text(parseFloat(originalNet + amount).toFixed(2));
     }
 }
-
-function editUpdateMonthlyStatus(originalType, newType, originalAmount, newAmount){
-    originalAmount = parseFloat(originalAmount);
-    newAmount = parseFloat(newAmount);
-    if (originalType === "I"){
-        let originalIncome = parseFloat($('#income').text());
-        let originalNet = parseFloat($('#net').text());
-        $('#income').text(parseFloat(originalIncome - originalAmount).toFixed(2));
-        $('#net').text(parseFloat(originalNet - originalAmount).toFixed(2));
-    } else if (originalType === "E"){
-        let originalExpense = parseFloat($('#expense').text());
-        let originalNet = parseFloat($('#net').text());
-        $('#expense').text(parseFloat(originalExpense - originalAmount).toFixed(2));
-        $('#net').text(parseFloat(originalNet + originalAmount).toFixed(2));
-    }
-    if (newType === "I"){
-        let originalIncome = parseFloat($('#income').text());
-        let originalNet = parseFloat($('#net').text());
-        $('#income').text(parseFloat(originalIncome + newAmount).toFixed(2));
-        $('#net').text(parseFloat(originalNet + newAmount).toFixed(2));
-    } else if (newType === "E"){
-        let originalExpense = parseFloat($('#expense').text());
-        let originalNet = parseFloat($('#net').text());
-        $('#expense').text(parseFloat(originalExpense + newAmount).toFixed(2));
-        $('#net').text(parseFloat(originalNet - newAmount).toFixed(2));
-    }
-}
