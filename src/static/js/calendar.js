@@ -43,7 +43,6 @@ function addCalendarEvents(transactions){
 
 function editCalendarEvent(transaction, id){
     let event = calendar.getEventById(id);
-    let originalTransaction = event["extendedProps"];
     event.setProp('title', transaction['title']);
     event.setDates(transaction['date'], transaction['date']);
     event.setAllDay(true);

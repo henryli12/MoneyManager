@@ -47,7 +47,7 @@ $( document ).ready(function() {
         addTransactionDB(transaction);
         if(transaction['date'].includes($('#month_display').val())) {
             addTransactionCard({1:transaction});
-            updateMonthlyStatus(transaction['type'], transaction['amount'])
+            addMonthlyStatus(transaction['type'], transaction['amount'])
         }
         $('#add_modal').modal('hide');
         $('#add_title').val("");
@@ -66,12 +66,14 @@ $( document ).ready(function() {
             'type': $('#edit_type').find(":selected").text().split("")[0],
             'date': $('#edit_date').val(),
         }
-        editCalendarEvent(transaction, id);
         // editTransactionDB(transaction, id);
-        // if(transaction['date'].includes($('#month_display').val())) {
-            // editTransactionCard(transaction);
-            // updateMonthlyStatus(transaction['type'], transaction['amount'])
-        // }
+        if(transaction['date'].includes($('#month_display').val())) {
+            editTransactionCard(transaction, id);
+            let originalTransaction = calendar.getEventById(id)["extendedProps"];
+            addMonthlyStatus(transaction['type'], transaction['amount']);
+            removeMonthlyStatus(originalTransaction['type'], originalTransaction['amount']);
+        }
+        editCalendarEvent(transaction, id);
         $('#edit_modal').modal('hide');
     })
     
