@@ -10,6 +10,10 @@ calendar = new FullCalendar.Calendar(calendarEl, {
         center: 'title',
         right: ''
     },
+    dateClick: function(info) {
+        $('#add_modal').modal();
+        $('#add_date').val(formatDate(info.date, "date"));
+    },
     eventClick: function(info) {
         editTransaction(info.event.id);
       }
