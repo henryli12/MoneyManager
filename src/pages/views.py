@@ -27,7 +27,6 @@ def add_transaction(request):
 
 def get_transactions_by_month(request, month):
     y, m = month.split("-")
-    print(y, m)
     expense, income = 0, 0
     transactions = Transaction.objects.filter(date__year=y, date__month=m)
     for t in transactions:
@@ -35,7 +34,6 @@ def get_transactions_by_month(request, month):
             income += t.amount
         else:
             expense += t.amount
-    print(expense, income)
     transactions_list = to_dict(transactions)
     data = {
         'expense': str(expense),
@@ -55,9 +53,11 @@ def edit_transaction(request, id):
     transaction.type = data['type']
     transaction.date = data['date']
     transaction.save()
-    print(transaction.title)
-    # print(request.POST)
-    # print(id)
+    return HttpResponse(status=204)
+
+def delete_transaction(request, id):
+    transaction = Transaction.objects.get(id=id)
+    transaction.delete()
     return HttpResponse(status=204)
 
 def to_dict(queryset):
@@ -73,5 +73,4 @@ def to_dict(queryset):
         temp["date"] = str(object.date)
         l[str(i)] = temp
         i += 1
-    print(l)
     return l

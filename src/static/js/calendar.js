@@ -10,15 +10,8 @@ calendar = new FullCalendar.Calendar(calendarEl, {
         center: 'title',
         right: ''
     },
-    dateClick: function(info) {
-    },
-    select: function(info) {
-    },
     eventClick: function(info) {
-        // alert('Event: ' + info.event.id);
         editTransaction(info.event.id);
-        // change the border color just for fun
-        // info.el.style.borderColor = 'red';
       }
 });
 
@@ -50,4 +43,8 @@ function editCalendarEvent(transaction, id){
     event.setExtendedProp('amount', transaction['amount']);
     event.setExtendedProp('type', transaction['type']);
     event.setExtendedProp('date', transaction['date']);
+}
+
+function removeCalendarEvent(id){
+    calendar.getEventById(id).remove();
 }

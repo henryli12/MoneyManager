@@ -66,14 +66,12 @@ $( document ).ready(function() {
             'type': $('#edit_type').find(":selected").text().split("")[0],
             'date': $('#edit_date').val(),
         }
-        // editTransactionDB(transaction, id);
-        if(transaction['date'].includes($('#month_display').val())) {
-            editTransactionCard(transaction, id);
-            let originalTransaction = calendar.getEventById(id)["extendedProps"];
-            addMonthlyStatus(transaction['type'], transaction['amount']);
-            removeMonthlyStatus(originalTransaction['type'], originalTransaction['amount']);
-        }
-        editCalendarEvent(transaction, id);
+        editTransactionDB(transaction, id);
+        $('#edit_modal').modal('hide');
+    })
+    $('#modal_delete').click(function(){
+        let id = $('#edit_id').val();
+        deleteTransactionDB(id);
         $('#edit_modal').modal('hide');
     })
     

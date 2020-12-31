@@ -53,6 +53,10 @@ function editTransactionCard(transaction, id){
     $(`#amount_text_${id}`).text(`${sign} \$${transaction["amount"]}`);
 }
 
+function removeTransactionCard(id){
+    $(`#${id}`).remove();
+}
+
 function setMonthlyStatus(expense, income){
     $('#expense').text(parseFloat(expense).toFixed(2));
     $('#income').text(parseFloat(income).toFixed(2));
