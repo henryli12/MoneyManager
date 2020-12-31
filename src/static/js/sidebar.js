@@ -6,6 +6,9 @@ function addTransactionCard(transactions){
         let sign = (transaction["type"] === "I") ? "+" : "-";
         let card = document.createElement("div");
         card.id = id;
+        card.onclick = function(){
+            editTransaction(id);
+        }
         card.classList.add("row", "card", "bg-light");
         
         let cardHeader = document.createElement("div");
@@ -31,16 +34,7 @@ function addTransactionCard(transactions){
         
         card.appendChild(cardHeader);
         card.appendChild(cardBody);
-        
 
-        let x = `<div class="row card bg-light mb-3" style="margin: 10px;">
-                        <div class="card-header">
-                            <h5>${transaction["title"]}</h5>
-                        </div>
-                        <div class="card-body">
-                            <p>${transaction['date']}</p>
-                        </div>
-                    </div>`;
         cardContainer.appendChild(card);
     }
 }

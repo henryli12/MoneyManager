@@ -28,7 +28,7 @@ def add_transaction(request):
 def get_transactions_by_month(request, month):
     y, m = month.split("-")
     expense, income = 0, 0
-    transactions = Transaction.objects.filter(date__year=y, date__month=m)
+    transactions = Transaction.objects.filter(date__year=y, date__month=m).order_by('date')
     for t in transactions:
         if t.type == "I":
             income += t.amount
